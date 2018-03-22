@@ -1,7 +1,9 @@
 from django.shortcuts import render, HttpResponse, render_to_response
 from emotion_extract.utils import returnJSON, GetRequestException
-from emotion_extract.config import *
+from emotion_extract.configuration import *
+from emotion_extract.ml_model import predict
 import os
+
 
 # Create your views here.
 def extract(request):
@@ -17,8 +19,13 @@ def extract(request):
             to_write = open(destination, "wb+")
         to_write.write(img)
         to_write.close()
+        result = predict(destination)
+        print(result)
+        return returnJSON({"success": True, "message": "", "result": result})
     except GetRequestException as e:
         return returnJSON({"success": False, "message": e.what})
+    # except:
+    #     return returnJSON({"success": False, "message": "Internal failure with extract. "})
 
 def upload_image(request):
     return render(request, 'uploadImage.html')

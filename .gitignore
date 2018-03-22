@@ -51,3 +51,5 @@ docs/_build/
 
 image_cache/
 .idea/
+
+local.py
