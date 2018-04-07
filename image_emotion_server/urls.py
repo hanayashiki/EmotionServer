@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from emotion_extract.views import extract, upload_image
+from emotion_extract.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^$', index),
     url(r'^extract/', extract),
-    url(r'^uploadImage/', upload_image)
+    url(r'^upload/', upload),
+    url(r'^about/', about)
 ]

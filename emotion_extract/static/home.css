@@ -1,0 +1,123 @@
+.title {
+    text-align: center;
+}
+
+.title p {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    display: inline-block;
+}
+
+.block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position:relative;
+}
+
+.content {
+    text-align: center;
+    background-color: #5ED5D1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.button {
+    text-align: center;
+}
+
+.big {
+    font-size: 28px;
+    color: #FF6E97;
+}
+
+.input {
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    border-radius:5px;
+    border-style: none;
+    color: #1A2D27;
+}
+
+.main-button {
+    display: inline-block;
+    width: 80px;
+    line-height: 27px;
+    font-size: 14px;
+    border-radius:5px;
+    border-style: none;
+    background-color: #FF6E97;
+    color: #1A2D27;
+}
+
+.main-button p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.main-button:hover {
+    background-color: #F1AAA6;
+}
+
+.main-button:active {
+    background-color: #AF7C79;
+}
+
+.main-button form {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    left:0;
+    top:-4px;
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+
+.main-button form input{
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.submit-button {
+    font-family: "Microsoft YaHei UI Light";
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #E0AA4C;
+    border-style: none;
+    border-radius:5px;
+    color: white;
+}
+
+.display-pic img {
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:300px;
+}
+
+.display-pic {
+    display: inline-block;
+    width: 300px;
+}
+
+.result-content {
+    text-align: center;
+    background-color: #FF6E97;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.canvas {
+    display: inline-block;
+}
+
+body {
+    font-family: "Microsoft YaHei UI Light";
+}

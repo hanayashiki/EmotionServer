@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>图像情感识别</title>
+    <link rel="stylesheet" href="../static/home.css">
+    <link rel="stylesheet" href="../static/load-effect.css">
+    <script src="../static/vue.js"></script>
+    <script src="../static/jquery.js"></script>
+    <script src="../static/vue-resource.js"></script>
+    <script src="../static/axios.js"></script>
+    <script src="../static/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+</head>
+<body>
+    <div class="title"><p class="big">图像情感识别</p></div>
+    <div class="content">
+        <input type="input" class="input block" placeholder="输入图片URL" id="url-input" v-model="url"><br/>
+        <div class="main-button block">
+            <p>上传图片</p>
+            <form id="upload">
+                {% csrf_token %}
+                <input type="file" @change="getFile($event)"/>
+            </form>
+        </div>
+        {% verbatim myblock %}
+        <span id="upload-status">{{ status }}</span><br/>
+        <div id="image-uploaded" v-if="set" class="display-pic">
+            <img :src="source" alt="已上传的图片"/>
+        </div>
+        {% endverbatim myblock %}
+    </div>
+
+    <div class="result-content" id="analysis">
+        <div class="button">
+            <p>
+                <button class="submit-button" @click="extract($event)">分析</button>
+            </p>
+        </div>
+        <div class="loadEffect" v-show="loading">
+		        <span></span>
+		        <span></span>
+		        <span></span>
+		        <span></span>
+		        <span></span>
+		        <span></span>
+		        <span></span>
+		        <span></span>
+		</div>
+        {% verbatim myblock %}
+            <p v-show="analyzed">{{ answer }}</p>
+        {% endverbatim myblock %}
+        <div style="height:320px; width:350px;" class="canvas" id="canvas" v-show="analyzed"></div>
+    </div>
+    <div>
+        <a href="/about/">关于本项目</a>
+    </div>
+</body>
+<script src="../static/home.js"></script>
+</html>
+

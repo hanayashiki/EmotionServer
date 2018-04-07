@@ -2,7 +2,7 @@ import emotion_extract.local as local
 import sys
 sys.path.append(local.PATH_TO_MODEL)
 import single_predict
-from test_module_VGG_top_and_hist import getModel
+from test_module_resnet_no_top import getModel
 import tensorflow as tf
 import keras.backend.tensorflow_backend as KTF
 
