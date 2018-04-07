@@ -125,6 +125,7 @@ new Vue({
                 let formData = new FormData();
                 formData.append('image', this.file);
                 uploadStatus.status = "上传中..."
+                imgSource.type = ""
                 let target = event.target;
                 imgPreview.source = getFileUrl(event.srcElement)
                 imgPreview.set = true
