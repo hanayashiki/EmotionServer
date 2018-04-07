@@ -60,7 +60,7 @@ analysis = new Vue({
                                 max = res.data.result[i]
                                 maxpos = i
                             }
-                            res.data.result[i] = Math.floor(res.data.result[i] * 100) / 100
+                            res.data.result[i] = Math.floor(res.data.result[i] * 10000) / 10000
                         }
                         analysis.result = res.data.result
                         analysis.answer = '结果：' + emotionDict[maxpos]
