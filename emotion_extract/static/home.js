@@ -1,7 +1,7 @@
 Vue.prototype.$http = axios;
 Vue.http.headers.common['X-CSRFToken'] = $("input[name='csrfmiddlewaretoken']").val();
 imgSource = {
-    type: "hash",
+    type: "",
     value: ""
 }
 emotionDict = {
@@ -44,33 +44,37 @@ analysis = new Vue({
     },
     methods: {
         extract(event) {
-            this.loading = true
-            this.analyzed = false
-            analysis.answer = ''
-            this.$http.get('/extract/', {
-                params: imgSource
-            }).then(function (res) {
-                console.log(res.data)
-                if (res.data.success === true) {
-                    let max = res.data.result[0]
-                    let maxpos = 0
-                    for (let i = 0; i < 4; i++) {
-                        if (res.data.result[i] > max) {
-                            max = res.data.result[i]
-                            maxpos = i
+            if (imgSource.type !== '') {
+                this.loading = true
+                this.analyzed = false
+                analysis.answer = ''
+                this.$http.get('/extract/', {
+                    params: imgSource
+                }).then(function (res) {
+                    console.log(res.data)
+                    if (res.data.success === true) {
+                        let max = res.data.result[0]
+                        let maxpos = 0
+                        for (let i = 0; i < 4; i++) {
+                            if (res.data.result[i] > max) {
+                                max = res.data.result[i]
+                                maxpos = i
+                            }
+                            res.data.result[i] = Math.floor(res.data.result[i] * 100) / 100
                         }
-                        res.data.result[i] = Math.floor(res.data.result[i] * 100) / 100
+                        analysis.result = res.data.result
+                        analysis.answer = '结果：' + emotionDict[maxpos]
+                        scrollToElement(500, document.getElementById("analysis"))
+                    } else {
+                        alert(res.data.message)
                     }
-                    analysis.result = res.data.result
-                    analysis.answer = '结果：' + emotionDict[maxpos]
-                    scrollToElement(500, document.getElementById("analysis"))
-                } else {
-                    alert(res.data.message)
-                }
-                this.loading = false
-            }, function (res) {
-                alert(res.status)
-            });
+                    this.loading = false
+                }, function (res) {
+                    alert(res.status)
+                });
+            } else {
+                alert("图片未指定或未上传完毕")
+            }
         }
     }
 
