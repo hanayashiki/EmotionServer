@@ -25,7 +25,7 @@ SECRET_KEY = 'si!u)u#)dze$$jg(^+m(v%se^vxhe8_5-y*1by#p=*d#yutrs9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['47.52.157.224', '127.0.0.1', '172.20.10.2', 'localhost', 'emotionnn.top']
+ALLOWED_HOSTS = ['47.52.157.224', '127.0.0.1', '172.20.10.2', 'localhost', 'emotionnn.top', 'www.emotionnn.top']
 
 
 # Application definition
