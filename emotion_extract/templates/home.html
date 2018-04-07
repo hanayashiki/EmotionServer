@@ -10,7 +10,6 @@
     <script src="../static/jquery.js"></script>
     <script src="../static/vue-resource.js"></script>
     <script src="../static/axios.js"></script>
-    <script src="../static/Chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 </head>
@@ -34,11 +33,6 @@
     </div>
 
     <div class="result-content" id="analysis">
-        <div class="button">
-            <p>
-                <button class="submit-button" @click="extract($event)">分析</button>
-            </p>
-        </div>
         <div class="loadEffect" v-show="loading">
 		        <span></span>
 		        <span></span>
@@ -49,6 +43,11 @@
 		        <span></span>
 		        <span></span>
 		</div>
+        <div class="button">
+            <p>
+                <button class="submit-button" @click="extract($event)" v-show="!loading">分析</button>
+            </p>
+        </div>
         {% verbatim myblock %}
             <p v-show="analyzed">{{ answer }}</p>
         {% endverbatim myblock %}
