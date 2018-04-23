@@ -77,14 +77,14 @@ analysis = new Vue({
                         musicRecommendation.loadMusicList(emotions[maxpos])
                         scrollToElement(500, document.getElementById("analysis"))
                     } else {
-                        alert(res.data.message)
+                        //alert(res.data.message)
                     }
                     this.loading = false
                 }, function (res) {
-                    alert(res.status)
+                    //alert(res.status)
                 })
             } else {
-                alert("图片未指定或未上传完毕")
+                //alert("图片未指定或未上传完毕")
             }
         }
     }
