@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="../static/home.css">
     <link rel="stylesheet" href="../static/load-effect.css">
     <script src="../static/vue.js"></script>
-    <script src="../static/jquery.js"></script>
+    <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+        if (!window.jQuery) {
+            let script = document.createElement('script');
+            script.src = "/js/jquery.min.js";
+            document.body.appendChild(script);
+        }
+    </script>
+
     <script src="../static/vue-resource.js"></script>
     <script src="../static/axios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
