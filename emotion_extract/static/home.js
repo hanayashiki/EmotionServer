@@ -153,12 +153,14 @@ new Vue({
                     imgSource.type = "hash"
                     imgSource.value = res.data.hash
                     uploadStatus.status = "上传成功"
-                    setInterval(() => {
+                    let interval = setInterval(() => {
                         uploadStatus.status = ""
+                        window.clearInterval(interval)
                     }, 4000)
                 }, function (res) {
-                    setInterval(() => {
+                    let interval = setInterval(() => {
                         uploadStatus.status = ""
+                        window.clearInterval(interval)
                     }, 4000)
                     uploadStatus.status = "上传失败"
                 })
