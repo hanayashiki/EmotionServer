@@ -244,11 +244,8 @@ function showChart(emotion) {
 function scrollToElement(scrollDuration, element) {
     let scrollCount = 0
     let totalCount = scrollDuration / 15
-    let startY;
+    let startY = window.scrollY
     let play = setInterval(function () {
-        if (scrollCount == 0) {
-            startY = window.scrollY
-        }
         scrollCount++
         let targetY = Math.min(getPosition(element).top, document.body.scrollHeight - window.innerHeight + 20)
         let ratio = (1 - Math.cos((scrollCount / totalCount) * Math.PI)) / 2
