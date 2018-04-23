@@ -33,7 +33,7 @@
     </div>
 
     <div class="result-content" id="analysis">
-        <div class="loadEffect" v-show="loading">
+        <div class="load-effect" v-show="loading">
 		        <span></span>
 		        <span></span>
 		        <span></span>
@@ -53,10 +53,23 @@
         {% endverbatim myblock %}
         <div style="height:320px; width:350px;" class="canvas" id="canvas" v-show="analyzed"></div>
     </div>
+    {% verbatim myblock %}
+    <div class="content" id="recommendation" v-show="analyzed">
+        <div class="recommendation-title">推荐音乐</div>
+        <ul class="music-list" id="music-list">
+            <li v-for="entry in recommendList">
+                <transition name="fade" mode="out-in">
+                    <a :href="entry[1]" target="_blank" :key="entry[0]">{{ entry[0] }}</a>
+                </transition>
+            </li>
+        </ul>
+    </div>
+    {% endverbatim myblock %}
     <div>
         <a href="/about/">关于本项目</a>
     </div>
 </body>
+<script src="../static/music-recommendation.js"></script>
 <script src="../static/home.js"></script>
 </html>
 

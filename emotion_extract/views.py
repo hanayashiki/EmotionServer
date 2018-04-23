@@ -6,6 +6,7 @@ if USE_MODEL:
     from emotion_extract.ml_model import predict
 import os
 import requests
+from emotion_extract.repertoire import repertoire
 
 
 # Create your views here.
@@ -36,7 +37,10 @@ def extract(request):
                 img.close()
 
         try:
-            result = predict(file_addr)
+            if USE_MODEL:
+                result = predict(file_addr)
+            else:
+                result = [0.25, 0.25, 0.25, 0.25]
         except:
             raise GetRequestException("请正确指定一张图片。")
         print(result)
@@ -71,3 +75,6 @@ def upload(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def get_repertoire(request):
+    return returnJSON(repertoire)

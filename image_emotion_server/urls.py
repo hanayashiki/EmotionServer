@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^$', index),
     url(r'^extract/', extract),
     url(r'^upload/', upload),
-    url(r'^about/', about)
+    url(r'^about/', about),
+    url(r'^getRepertoire/', get_repertoire)
 ]

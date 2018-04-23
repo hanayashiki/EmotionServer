@@ -118,6 +118,46 @@
     display: inline-block;
 }
 
+.recommendation-title {
+    font-size: 18px;
+    text-align: left;
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #1A2D27;
+}
+
+.music-list {
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+.music-list li {
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+
+.music-list li a {
+    font-size: 14px;
+    font-family: Arial;
+}
+
+.music-list li a:link {
+    color: black;
+}
+
+.music-list li a:visited {
+    color: gray;
+}
+
+
 body {
     font-family: "Microsoft YaHei UI Light";
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .65s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

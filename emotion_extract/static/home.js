@@ -1,15 +1,24 @@
 Vue.prototype.$http = axios;
 Vue.http.headers.common['X-CSRFToken'] = $("input[name='csrfmiddlewaretoken']").val();
+
 imgSource = {
     type: "",
     value: ""
 }
+
 emotionDict = {
     0: "Amusement / 愉快",
     1: "Anger / 愤怒",
     2: "Excitement / 兴奋",
     3: "Sadness / 悲伤"
 }
+
+emotions = [
+    "amusement",
+    "anger",
+    "excitement",
+    "sadness"
+]
 
 uploadStatus = new Vue({
     el: '#upload-status',
@@ -47,6 +56,7 @@ analysis = new Vue({
             if (imgSource.type !== '') {
                 this.loading = true
                 this.analyzed = false
+                musicRecommendation.hideMusicList()
                 analysis.answer = ''
                 this.$http.get('/extract/', {
                     params: imgSource
@@ -64,6 +74,7 @@ analysis = new Vue({
                         }
                         analysis.result = res.data.result
                         analysis.answer = '结果：' + emotionDict[maxpos]
+                        musicRecommendation.loadMusicList(emotions[maxpos])
                         scrollToElement(500, document.getElementById("analysis"))
                     } else {
                         alert(res.data.message)
@@ -71,7 +82,7 @@ analysis = new Vue({
                     this.loading = false
                 }, function (res) {
                     alert(res.status)
-                });
+                })
             } else {
                 alert("图片未指定或未上传完毕")
             }
@@ -98,6 +109,7 @@ urlInput = new Vue({
                 imgSource.type = "url"
                 imgSource.value = this.url
                 analysis.analyzed = false
+                musicRecommendation.hideMusicList()
             },
             500
         )
@@ -130,6 +142,7 @@ new Vue({
                 imgPreview.source = getFileUrl(event.srcElement)
                 imgPreview.set = true
                 analysis.analyzed = false
+                musicRecommendation.hideMusicList()
                 let config = {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -229,8 +242,11 @@ function showChart(emotion) {
 function scrollToElement(scrollDuration, element) {
     let scrollCount = 0
     let totalCount = scrollDuration / 15
-    let startY = window.scrollY
+    let startY;
     let play = setInterval(function () {
+        if (scrollCount == 0) {
+            startY = window.scrollY
+        }
         scrollCount++
         let targetY = Math.min(getPosition(element).top, document.body.scrollHeight - window.innerHeight + 20)
         let ratio = (1 - Math.cos((scrollCount / totalCount) * Math.PI)) / 2
